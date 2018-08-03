@@ -22,7 +22,7 @@ class AuthScreen extends Component {
 
     updateStyles = (dims) => {
         this.setState({
-            viewMode: dims.window.height.height > 500 ? "portrait" : "landscape"
+            viewMode: dims.window.height > 500 ? "portrait" : "landscape"
         });
     }
 
