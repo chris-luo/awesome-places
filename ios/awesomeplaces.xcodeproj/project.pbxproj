@@ -42,6 +42,7 @@
 		E0261A01211012B5005D0646 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0261A0021101298005D0646 /* libRNVectorIcons.a */; };
 		E0261A032110132D005D0646 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E0261A022110132D005D0646 /* Ionicons.ttf */; };
 		E0261A3D21101CA3005D0646 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0261A3B21101C81005D0646 /* libReactNativeNavigation.a */; };
+		E0B0F2CA21179B5F00898939 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B0F2C821179B3F00898939 /* libRNImagePicker.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -332,6 +333,13 @@
 			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
 			remoteInfo = ReactNativeNavigation;
 		};
+		E0B0F2C721179B3F00898939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E0B0F29D21179B3F00898939 /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -367,6 +375,7 @@
 		E02619FB21101298005D0646 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		E0261A022110132D005D0646 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		E0261A1121101C81005D0646 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		E0B0F29D21179B3F00898939 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +391,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B0F2CA21179B5F00898939 /* libRNImagePicker.a in Frameworks */,
 				E0261A3D21101CA3005D0646 /* libReactNativeNavigation.a in Frameworks */,
 				E0261A01211012B5005D0646 /* libRNVectorIcons.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -573,6 +583,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E0B0F29D21179B3F00898939 /* RNImagePicker.xcodeproj */,
 				E0261A1121101C81005D0646 /* ReactNativeNavigation.xcodeproj */,
 				E02619FB21101298005D0646 /* RNVectorIcons.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -657,6 +668,14 @@
 			isa = PBXGroup;
 			children = (
 				E0261A3B21101C81005D0646 /* libReactNativeNavigation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E0B0F29E21179B3F00898939 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E0B0F2C821179B3F00898939 /* libRNImagePicker.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -828,6 +847,10 @@
 				{
 					ProductGroup = E0261A1221101C81005D0646 /* Products */;
 					ProjectRef = E0261A1121101C81005D0646 /* ReactNativeNavigation.xcodeproj */;
+				},
+				{
+					ProductGroup = E0B0F29E21179B3F00898939 /* Products */;
+					ProjectRef = E0B0F29D21179B3F00898939 /* RNImagePicker.xcodeproj */;
 				},
 				{
 					ProductGroup = E02619FC21101298005D0646 /* Products */;
@@ -1116,6 +1139,13 @@
 			fileType = archive.ar;
 			path = libReactNativeNavigation.a;
 			remoteRef = E0261A3A21101C81005D0646 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E0B0F2C821179B3F00898939 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = E0B0F2C721179B3F00898939 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
