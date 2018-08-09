@@ -27,14 +27,14 @@ export const addPlace = (placeName, location, image) => {
                     body: JSON.stringify(placeData)
                 })
             })
-            .catch(err => {
-                console.log(err);
-                alert("Something went wrong, please try again!");
-                dispatch(uiStopLoading());
-            })
             .then(res => res.json())
             .then(parsedRes => {
                 console.log(parsedRes);
+                dispatch(uiStopLoading());
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Something went wrong, please try again!");
                 dispatch(uiStopLoading());
             });
     }
@@ -48,10 +48,8 @@ export const addPlace = (placeName, location, image) => {
 
 export const getPlaces = () => {
     return dispatch => {
-        fetch("https://awesome-places-1533493318776.firebaseio.com/places.json").catch(err => {
-            console.log(err);
-            alert("Something went wrong.");
-        })
+        fetch("https://awesome-places-1533493318776.firebaseio.com/places.json")
+
             .then(res => res.json())
             .then(parsedRes => {
                 const places = [];
@@ -65,6 +63,10 @@ export const getPlaces = () => {
                     });
                 }
                 dispatch(setPlaces(places))
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Something went wrong.");
             })
     }
 };
@@ -81,14 +83,15 @@ export const deletePlace = (key) => {
         dispatch(removePlace(key));
         fetch(`https://awesome-places-1533493318776.firebaseio.com/places/${key}.json`, {
             method: "DELETE"
-        }).catch(err => {
-            console.log(err);
-            alert("Something went wrong.");
         })
             .then(res => res.json())
             .then(parsedRes => {
                 console.log(parsedRes);
             })
+            .catch(err => {
+                console.log(err);
+                alert("Something went wrong.");
+            });
     }
 }
 
