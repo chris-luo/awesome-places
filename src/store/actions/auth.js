@@ -29,25 +29,28 @@ export const tryAuth = (authData, authMode) => {
         })
             .then(res => res.json())
             .then(parsedRes => {
-                console.log(parsedRes);
                 dispatch(uiStopLoading());
                 if (!parsedRes.idToken) {
                     alert("Authentication failed, please try again");
                 } else {
-                    dispatch(authStoreToken(parsedRes.idToken, parsedRes.expiresIn));
+                    dispatch(authStoreToken(
+                        parsedRes.idToken,
+                        parsedRes.expiresIn,
+                        parsedRes.refreshToken));
                     startMainTabs();
                 }
             });
     }
 };
 
-export const authStoreToken = (token, expiresIn) => {
+export const authStoreToken = (token, expiresIn, refreshToken) => {
     return dispatch => {
         dispatch(authSetToken(token));
         const now = new Date();
         const expiryDate = now.getTime() + expiresIn * 1000;
         AsyncStorage.setItem("ap:auth:token", token);
         AsyncStorage.setItem("ap:auth:expiryDate", expiryDate.toString());
+        AsyncStorage.setItem("ap:auth:refreshToken", refreshToken);
     }
 }
 
@@ -88,10 +91,37 @@ export const authGetToken = () => {
                 resolve(token);
             }
         });
-        promise.catch(err => {
-            dispatch(authClearStorage());
-        })
-        return promise;
+        return promise.catch(err => {
+            return AsyncStorage.getItem("ap:auth:refreshToken")
+                .then(refreshToken => {
+                    return fetch(`https://securetoken.googleapis.com/v1/token?key=${apiKey}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: "grant_type=refresh_token&refresh_token=" + refreshToken
+                    });
+                })
+                .then(res => res.json())
+                .then(parsedRes => {
+                    if (parsedRes.id_token) {
+                        dispatch(authStoreToken(
+                            parsedRes.id_token,
+                            parsedRes.expires_in,
+                            parsedRes.refresh_token));
+                        return parsedRes.id_token;
+                    } else {
+                        dispatch(authClearStorage());
+                    }
+                })
+                .then(token => {
+                    if (!token) {
+                        throw (new Error());
+                    } else {
+                        return token;
+                    }
+                });
+        });
     };
 };
 
